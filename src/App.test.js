@@ -42,12 +42,26 @@ import App from "./App";
 test("disable button, gray, enable button, red", () => {
   render(<App />);
 
-  const colorButton = screen.getByRole("button");
+  const colorButton = screen.getByRole("button", { name: "change to blue" });
+  const checkBox = screen.getByRole("checkbox", { name: "disable button" });
+
+  fireEvent.click(checkBox);
+  expect(colorButton).toHaveStyle("background-color: gray");
+
+  fireEvent.click(checkBox);
+  expect(colorButton).toHaveStyle("backgroundColor: red");
+});
+
+test("clicked", () => {
+  render(<App />);
+  const checkBox = screen.getByRole("checkbox", { name: "disable button" });
+  const colorButton = screen.getByRole("button", { name: "change to blue" });
 
   fireEvent.click(colorButton);
 
-  expect(colorButton).toBeEnabled;
-  expect(colorButton).toHaveStyle({ backgroundColor: "red" });
+  fireEvent.click(checkBox);
+  expect(colorButton).toHaveStyle("background-color: gray");
 
-  fireEvent.click(colorButton);
+  fireEvent.click(checkBox);
+  expect(colorButton).toHaveStyle("background-color: blue");
 });
