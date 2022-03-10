@@ -3,17 +3,48 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [buttonColor, setButtonColor] = useState("red");
-  const newButtonColor = buttonColor === "red" ? "blue" : "red";
+  const [buttonColor, setButtonColor] = useState("gray");
+  const [disable, setDisable] = useState(false);
+  const newButtonColor = buttonColor === "gray" ? "red" : "gray";
+
+  const handler = () => {
+    setDisable(true);
+    setButtonColor(newButtonColor);
+  };
 
   return (
-    <div className="App">
+    // <div className="App">
+    //  <button
+    //     style={{ backgroundColor: buttonColor }}
+    //     onClick={() => setButtonColor(newButtonColor)}
+    //   >
+    //     change to {newButtonColor}
+    //   </button>
+    //   <input type="checkbox" />
+    // </div>
+    // <div>
+    //   <button disabled={disable}></button>
+    //   <input
+    //     type="checkbox"
+    //     defaultChecked={disable}
+    //     aria-checked={disable}
+    //     onClick={(e) => setDisable(e.target.checked)}
+    //   />
+    // </div>
+    <div>
       <button
-        style={{ backgroundColor: buttonColor }}
-        onClick={() => setButtonColor(newButtonColor)}
+        disabled={disable}
+        style={{ backgroundColor: disable ? "gray" : buttonColor }}
+        onClick={handler}
       >
         change to {newButtonColor}
       </button>
+      <input
+        type="checkbox"
+        defaultChecked={disable}
+        aria-checked={disable}
+        onClick={(e) => setDisable(e.target.checked)}
+      />
     </div>
   );
 }
