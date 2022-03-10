@@ -24,15 +24,30 @@ import App from "./App";
 //   expect(checkBox).not.toBeChecked();
 // });
 
-test("checkbox is not checked", () => {
+// First Quiz
+// test("checkbox is not checked", () => {
+//   render(<App />);
+
+//   const checkBox = screen.getByRole("checkbox");
+//   const button = screen.getByRole("button");
+
+//   fireEvent.click(checkBox);
+//   expect(button).toBeDisabled();
+
+//   fireEvent.click(checkBox);
+//   expect(button).toBeEnabled();
+// });
+
+// Second Quiz
+test("disable button, gray, enable button, red", () => {
   render(<App />);
 
-  const checkBox = screen.getByRole("checkbox");
-  const button = screen.getByRole("button");
+  const colorButton = screen.getByRole("button");
 
-  fireEvent.click(checkBox);
-  expect(button).toBeDisabled();
+  fireEvent.click(colorButton);
 
-  fireEvent.click(checkBox);
-  expect(button).toBeEnabled();
+  expect(colorButton).toBeEnabled;
+  expect(colorButton).toHaveStyle({ backgroundColor: "red" });
+
+  fireEvent.click(colorButton);
 });
